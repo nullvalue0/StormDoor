@@ -1,0 +1,47 @@
+StormDoor Changelog
+===================
+
+v0.3.2 beta - 10/21/2004
+------------------------
+* Officially added the UserInput event. This should be used to hand all client 
+  input instead of the WaitForKey function.. This way the processor will not 
+  peg out at 100% while waiting for input. Understanding and use of a state 
+  machine will be neccessary when using this approach.
+
+* The StormDoor control now shows current user statistics, such as time 
+  remaining, alias, and security level.
+
+* Got rid of the annoying "Unrecognized Command" popup message.
+
+* Fixed a spelling error in the foreground color selections.
+
+* Added some more sample code applications.
+
+* You can now pass just the socket handle instead of a path to the dropfile 
+  by using the -H switch on the OpenDropFile command.
+
+
+v0.3.1 beta - 07/14/2004
+------------------------
+* Added the Echo property. (automatically echo's characters back to the client's 
+  terminal)
+
+* Backspace was not working correctly.
+
+* Improved local ANSI display.
+
+* Fixed some random bugs.
+
+
+v0.2 beta - 03/15/2004
+----------------------
+* Added support for local mode. (node 0)
+
+* Local display now shows in full color ANSI.
+
+* Paper Rock Scissors sample now keeps track of and shows scores.
+
+
+v0.1 beta - 01/30/2004
+----------------------
+First Release.

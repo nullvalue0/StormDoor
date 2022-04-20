@@ -1,0 +1,148 @@
+<TITLE>
+StormDoor Usage Documentation
+</TITLE>
+<font face=Arial>
+<font size=4><b><u>StormDoor v0.3.2 beta</u></b></font><BR><BR>
+<font size=3><b><u>Properties</b></u></font><BR><BR>
+
+<font size=2>
+
+<b><i>Alias</b> (string)</i><BR>
+Holds the client's alias, as read from the dropfile.<BR><BR>
+
+<b><i>BaudRate</b> (string)</i><BR>
+Holds the client's baud rate, as read from the dropfile.<BR><BR>
+
+<b><i>BBSID</b> (string)</i><BR>
+Holds the client's BBS record ID, as read from the dropfile.<BR><BR>
+
+<b><i>CommType</b> (integer)</i><BR>
+Holds the client's comm type, as read from the dropfile.<BR>
+Should always be set to 2, because StormDoor only supports telnet.<BR><BR>
+
+<b><i>Emulation</b> (integer)</i><BR>
+Holds the client's emulation, as read from the dropfile.<BR><BR>
+
+<b><i>RealName</b> (string)</i><BR>
+Holds the client's real name, as read from the dropfile.<BR><BR>
+
+<b><i>SecurityLevel</b> (integer)</i><BR>
+Holds the client's security level, as read from the dropfile.<BR><BR>
+
+<b><i>ThisNode</b> (integer)</i><BR>
+Holds the client's current BBS node, as read from the dropfile.<BR><BR>
+
+<b><i>TimeLeft</b> (integer)</i><BR>
+Holds the client's time left in minutes, as read from the dropfile.<BR><BR>
+
+<b><i>SocketHandle</b> (integer)</i><BR>
+Holds the client's winsock connection socket handle, as read from the dropfile.<BR><BR>
+
+<b><i>UserRecord</b> (integer)</i><BR>
+Holds the client's BBS record number, as read from the dropfile.<BR><BR>
+
+<b><i>Echo</b> (boolean)</i><BR>
+If set to true, StormDoor will automatically echo the client's input.<BR>
+This means the client's terminal should have local_echo turned off.<BR><BR>
+
+<BR></font>
+
+<font size=3><b><u>Methods</b></u></font><BR><BR>
+
+<font size=2>
+<b><i>OpenDropFile(path)</b></i><BR>
+Opens the door32 dropfile and establishes all connections to the client.<BR><BR>
+<i>path</i> - Path to the door32 dropfile.<BR><BR>
+
+<b><i>SendNode(tonode, data)</b></i><BR>
+Sends a message to another node.<BR><BR>
+<i>tonode</i> - Node number of user to send the message to.<BR>
+<i>data</i> - Message to send to the other node.<BR><BR>
+
+<b><i>Display(data)</b></i><BR>
+Prints the desired text to the client's terminal.<BR>
+Use the ChangeColor function to print in desired ANSI colors.<BR><BR>
+
+<i>data</i> - Text to be displayed on the client's terminal.<BR><BR>
+
+<b><i>ClearDisplay()</b></i><BR>
+Sends the ANSI command to clear the screen.<BR><BR>
+
+<b><i>ClearToEndOfLine()</b></i><BR>
+Sends the ANSI command to clear from the current position to the end of the line.<BR><BR>
+
+<b><i>ChangeColor(foreground, background)</b></i><BR>
+Selects the ANSI colors to be used when the Display function is called.<BR><BR>
+<i>foreground</i> - Foreground color, choose from the popup list.<BR>
+<i>background</i> - Background color, choose from the popup list.<BR><BR>
+
+<b><i>DisplayANSI(path)</b></i><BR>
+Displays an ANSI file to the client's terminal.<BR><BR>
+<i>path</i> - Path to the ANSI file.<BR><BR>
+
+<b><i>Quit()</b></i><BR>
+This function should be called in order to close the connection gracefully.<BR><BR>
+
+<b><i>WaitForKey([WaitKeys], [Default]. [TimeLimit])</b></i><BR>
+Waits for keyboard input from the client. Function returns the key that was pressed.<BR><BR>
+<i>WaitKeys</i> - Optional. Comma-seperated string of valid characters to wait for.<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ie: "A,B,C". Focus will be return only after one of these keys have<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+been selected. If left blank, focus will be returned after any key is<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pressed.<BR><BR>
+<i>Default</i> - Optional. Character to be automatically selected if the Enter key is pressed.<BR><BR>
+<i>TimeLimit</i> - Optional. Time in minutes to wait at the prompt. If time limit expires,<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function returns an empty string.<BR><BR>
+
+<b><i>MoveToPos(line_num,col_num)</b></i><BR>
+Sends the ANSI command to move the cursor to the specified coordinates.<BR><BR>
+<i>line_num</i> - Specifies which line number to move to.<BR>
+<i>col_num</i> - Specifies which column number to move to.<BR><BR>
+
+<b><i>ClearToEndOfLine()</b></i><BR>
+Sends the ANSI command to clear from the current cursor position to the end of the current line.<BR><BR>
+
+</font>
+
+
+<BR>
+
+<font size=3><b><u>Events</u></b></font><BR><BR>
+
+<font size=2>
+
+<b><i>UserInput(data)</b></i><BR>
+Event fires when the the client types something from their terminal.<BR><BR>
+<i>data</i> - Contains the string data that was typed at the client terminal.<BR>
+<BR>
+
+<b><i>ConnectionClosed()</b></i><BR>
+Event fires when the client's connection is dropped unexpectedly.<BR><BR>
+
+<b><i>NodeRecv(fromnode,data)</b></i><BR>
+Event fires when the current node receives a message from another node.<BR><BR>
+<i>fromnode</i> - Contains the node number that sent the message.<BR>
+<i>data</i> - Contains the message that was sent.<BR>
+<BR>
+
+<b><i>NodeSignOn(node,alias)</b></i><BR>
+Event fires when another user signs onto a different node in the game.<BR><BR>
+<i>node</i> - Contains the node number that the other user signed onto.<BR>
+<i>alias</i> - Contains the alias of the user that just signed on.<BR>
+<BR>
+
+<b><i>NodeSignOff(node,alias)</b></i><BR>
+Event fires when another user signs out of a different node in the game.<BR><BR>
+<i>node</i> - Contains the node number that the other user off of.<BR>
+<i>alias</i> - Contains the alias of the user that just signed off.<BR>
+<BR>
+
+<b><i>RanOutofTime()</b></i><BR>
+Event fires when the client runs out of online time. StormDoor internally keeps track<BR>
+of how much time the client has left online, based on the contents of the doorfile.<BR>
+
+
+</font>
+</font>
