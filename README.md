@@ -30,7 +30,7 @@ Holds the client's baud rate, as read from the dropfile.
 Holds the client's BBS record ID, as read from the dropfile.
 
 
-***CommType** (integer)
+***CommType** (integer)*
 
 Holds the client's comm type, as read from the dropfile. Should always be set to 2, because StormDoor only supports telnet.
 
