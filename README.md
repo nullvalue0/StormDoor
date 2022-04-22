@@ -1,8 +1,8 @@
 # StormDoor
-StormDoor is a BBS door game development kit. It was developed in Visual Basic 6.0 and builds to an OCX control. It is fairly complete including methods to generate ANSI colors, read dropfile properties, respond to user input, multinode support, and fire different events. 
+StormDoor is a BBS door game development kit. It was developed in Visual Basic 6.0 and builds to an OCX control. It is fairly complete including methods to generate ANSI colors, read dropfile properties, respond to user input, multinode support, and fires different events. 
 
 There are also a number of sample door games included showing usage of various features, including:
-- Sending different color foreground/background text
+- Sending foreground/background color text
 - Reading & writing data from a database
 - Menu structures and handling user input
 - Paper Rock Scissors - a working multinode interactive game
